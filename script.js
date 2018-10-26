@@ -29,20 +29,14 @@ const quotes = [
 const quotesEl = document.querySelector('.quotes');
 
 function addQuoteButton() {
-  let quoteButton = document.querySelector('.show-quote');
-    if(!quoteButton){
-      quotesEl.insertAdjacentHTML('beforeend', `
-        <button class="show-quote">Show Quote</button>
-      `);
-    }else{
-      return true;
-    }
-     
+  const quoteButton = document.querySelector('.show-quote');
+
+  quoteButton.classList.toggle('isHidden');
 };
 
 
 function removeQuoteButton() {
-  quotesEl.removeChild(quotesEl.lastChild);
+   addQuoteButton();
 };
 
 function displayQuote() {
@@ -55,7 +49,7 @@ document.addEventListener('click', function(e) {
        addQuoteButton(e);
     }else if(e.target.dataset.action == "remove"){
        removeQuoteButton(e);
-    }else if(e.target.classList.contains("show-quote")){
+    }else if(e.target.dataset.action == "show-quote"){
       displayQuote(e);
     }
 });
